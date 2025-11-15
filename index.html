@@ -252,7 +252,7 @@
             box-shadow: var(--shadow-soft);
         }
 
-        /* DARY & QR */
+        /* DARY & QR + STYL */
         .gifts-layout {
             display: grid;
             grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
@@ -266,6 +266,20 @@
         }
 
         .gifts-text strong {
+            color: var(--accent);
+        }
+
+        .style-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 10px 0 0;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .style-list li::before {
+            content: "•";
+            margin-right: 8px;
             color: var(--accent);
         }
 
@@ -334,7 +348,7 @@
             font-size: 13px;
         }
 
-        /* FORM */
+        /* FORM / CTA */
         .form-grid {
             display: grid;
             grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
@@ -351,109 +365,47 @@
             margin: 10px 0 0;
         }
 
-        form {
-            display: grid;
-            gap: 12px;
-            font-size: 14px;
+        .cta-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100%;
         }
 
-        .form-field {
-            display: grid;
-            gap: 4px;
-        }
-
-        label {
-            font-weight: 600;
+        .cta-label {
             font-size: 13px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            border-radius: 999px;
-            border: 1px solid #d4d4e0;
-            padding: 9px 12px;
-            font: inherit;
-            background: #fbfbff;
-            outline: none;
-            transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-        }
-
-        textarea {
-            border-radius: 16px;
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        input:focus,
-        textarea:focus {
-            border-color: var(--accent);
-            background: #ffffff;
-            box-shadow: 0 0 0 2px rgba(90, 99, 242, 0.15);
-        }
-
-        .helper {
-            font-size: 12px;
             color: var(--muted);
         }
 
-        .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 2px;
-        }
-
-        .radio-pill {
+        .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 6px 10px;
+            gap: 10px;
+            padding: 12px 22px;
             border-radius: 999px;
-            border: 1px solid #d4d4e0;
-            font-size: 12px;
-            cursor: pointer;
-            background: #fbfbff;
-        }
-
-        .radio-pill input {
-            margin: 0;
-        }
-
-        button[type="submit"] {
-            margin-top: 4px;
-            border: none;
-            border-radius: 999px;
-            padding: 9px 18px;
-            font: inherit;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
             background: linear-gradient(135deg, #5a63f2, #8a5af2);
             color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            box-shadow: 0 12px 30px rgba(90, 99, 242, 0.5);
+            border: none;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 10px 25px rgba(90, 99, 242, 0.35);
+            text-decoration: none;
             transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
         }
 
-        button[type="submit"]:hover {
+        .cta-button:hover {
             transform: translateY(-1px);
             filter: brightness(1.04);
-            box-shadow: 0 16px 35px rgba(90, 99, 242, 0.45);
+            box-shadow: 0 18px 40px rgba(90, 99, 242, 0.6);
         }
 
-        .btn-icon {
-            font-size: 16px;
-        }
-
-        .form-success {
-            display: none;
-            margin-top: 6px;
-            font-size: 13px;
-            color: #16a34a;
+        .cta-icon {
+            font-size: 18px;
         }
 
         /* FOOTER */
@@ -519,9 +471,10 @@
             <span>Veronika &amp; Aleš</span>
         </div>
         <div class="nav-links">
+            <a href="#styl" class="nav-link">Styl svatby</a>
             <a href="#dary" class="nav-link">Dary</a>
             <a href="#harmonogram" class="nav-link">Harmonogram</a>
-            <a href="#alergie" class="nav-link">Alergie</a>
+            <a href="#alergie" class="nav-link">Účast &amp; alergie</a>
         </div>
     </nav>
 
@@ -537,10 +490,10 @@
             <div class="hero-date">Pátek 10. července 2026 · Zámek Loučeň</div>
             <p class="hero-text">
                 Tuto stránku jsme připravili pro naše milé hosty. Najdete zde informace o svatebním dni,
-                harmonogram a možnost nám napsat, pokud máte nějaké alergie či stravovací omezení.
+                styl svatby, harmonogram a odkaz na dotazník k účasti a stravovacím omezením.
             </p>
             <div class="hero-highlight">
-                💌 Prosíme, potvrďte svoji účast organizátorům stejně jako u klasické pozvánky.
+                💌 Prosíme, potvrďte svoji účast prostřednictvím dotazníku níže.
             </div>
         </div>
 
@@ -573,6 +526,31 @@
         </aside>
     </header>
 
+    <!-- STYL SVATBY -->
+    <section id="styl">
+        <h2 class="section-title">Styl &amp; barvy svatby</h2>
+        <p class="section-sub">
+            Ať se všichni cítíme příjemně a sladěně, pár slov k tomu, jak bude naše svatba laděná.
+        </p>
+
+        <div class="card">
+            <p>
+                Naše svatba bude v elegantně uvolněném stylu – žádný striktní dress code, ale
+                uvítáme, když ladění oblečení přizpůsobíte svatebním barvám.
+            </p>
+            <p>
+                <strong>Hlavní svatební barva je modrofialová.</strong> Pokud budete chtít,
+                můžete ji zakomponovat do svého oblečení nebo doplňků – šaty, kravata, motýlek,
+                kapesníček, šperky, manžetové knoflíčky, apod.
+            </p>
+            <ul class="style-list">
+                <li>Styl: elegantní, ale neformálně pohodlný (smart casual / sváteční oblečení).</li>
+                <li>Barvy: modrofialová a její odstíny, doplněná jemnými neutrálními tóny (bílá, šedá, béžová).</li>
+                <li>Prosíme pouze o vynechání čistě bílých svatebních šatů u hostek – ty si ponecháme pro nevěstu. 🙂</li>
+            </ul>
+        </div>
+    </section>
+
     <!-- DARY -->
     <section id="dary">
         <h2 class="section-title">Dary &amp; svatební cesta</h2>
@@ -597,7 +575,7 @@
 
             <div class="qr-placeholder">
                 <div class="qr-box">
-                    <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/qrcode.png?raw=true"
+                    <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/qr%20dummy.png?raw=true"
                          alt="QR kód pro platbu" />
                 </div>
                 <div class="qr-note">
@@ -712,67 +690,47 @@
         </div>
     </section>
 
-    <!-- ALERGIE FORMULÁŘ -->
+    <!-- ÚČAST, ALERGIE & DOTAZNÍK -->
     <section id="alergie">
-        <h2 class="section-title">Alergie &amp; stravovací omezení</h2>
+        <h2 class="section-title">Účast, alergie &amp; stravovací omezení</h2>
         <p class="section-sub">
-            Abychom mohli přizpůsobit jídelníček na svatební hostinu, prosíme vás o vyplnění krátkého formuláře.
+            Prosíme všechny pozvané, aby za sebe (a případné +1) vyplnili krátký dotazník. Podle něj připravíme zasedací pořádek,
+            jídlo i další organizaci dne.
         </p>
 
         <div class="card form-grid">
             <div class="form-note">
                 <p>
-                    Prosíme, napište nám, pokud máte <strong>alergie na potraviny</strong>, případně jiná
-                    stravovací omezení (např. bezlepková dieta, vegetariánství, intolerance laktózy apod.).
+                    V dotazníku se vás zeptáme na několik důležitých věcí:
                 </p>
                 <ul>
-                    <li>Uveďte, <strong>na co konkrétně</strong> jste alergičtí či co nejíte.</li>
-                    <li>Pokud vyplňujete za více osob, napište jejich jména a omezení zvlášť.</li>
-                    <li>Nemáte alergie? Klidně napište „bez omezení“ – pomůže nám to při plánování.</li>
+                    <li><strong>Kdo se účastní</strong> – za každého pozvaného, včetně případného +1 (např. partner/ka).</li>
+                    <li><strong>Potvrzení účasti</strong> – jestli se svatby zúčastníte nebo ne.</li>
+                    <li><strong>Stravovací omezení a alergie</strong> – bezlepková dieta, vegetariánství, intolerance laktózy, alergie na ořechy atd.</li>
                 </ul>
+                <p>
+                    Vyplněním dotazníku nám hodně pomůžete, abychom pro vás dokázali připravit jídlo a celý program tak,
+                    aby si každý den na Loučeni opravdu užil.
+                </p>
             </div>
 
-            <div>
-                <form id="allergy-form">
-                    <div class="form-field">
-                        <label for="name">Jméno a příjmení</label>
-                        <input type="text" id="name" name="name" required placeholder="Např. Jan Novák" />
-                        <div class="helper">Můžete uvést i více osob, pokud jste jedna domácnost.</div>
-                    </div>
+            <div class="cta-box">
+                <div class="cta-label">
+                    Kliknutím na tlačítko níže otevřete svatební dotazník v Google Docs / Google Forms.
+                </div>
 
-                    <div class="form-field">
-                        <label for="email">E-mail (volitelné)</label>
-                        <input type="email" id="email" name="email" placeholder="Pro případné upřesnění" />
-                    </div>
+                <!-- TODO: Nahraď URL pod href svojí skutečnou adresou Google formuláře -->
+                <a class="cta-button"
+                   href="https://docs.google.com/...TVUJ_DOTAZNIK..."
+                   target="_blank" rel="noopener noreferrer">
+                    <span class="cta-icon">📝</span>
+                    <span>Vyplnit svatební dotazník</span>
+                </a>
 
-                    <div class="form-field">
-                        <label>Máte potravinové alergie nebo omezení?</label>
-                        <div class="radio-group">
-                            <label class="radio-pill">
-                                <input type="radio" name="hasAllergies" value="ano" checked />
-                                <span>Ano</span>
-                            </label>
-                            <label class="radio-pill">
-                                <input type="radio" name="hasAllergies" value="ne" />
-                                <span>Ne, bez omezení</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-field">
-                        <label for="allergies">Popis alergií / omezení</label>
-                        <textarea id="allergies" name="allergies" placeholder="Např. silná alergie na ořechy, nejím ryby, bezlepková dieta..."></textarea>
-                        <div class="helper">Čím přesnější budete, tím lépe dokážeme jídlo přizpůsobit.</div>
-                    </div>
-
-                    <button type="submit">
-                        <span class="btn-icon">📨</span>
-                        <span>Odeslat</span>
-                    </button>
-                    <div id="form-success" class="form-success">
-                        Děkujeme, vaše informace o alergiích byly připraveny k odeslání v e-mailu.
-                    </div>
-                </form>
+                <div class="cta-label">
+                    Prosíme o vyplnění <strong>co nejdříve po obdržení pozvánky</strong>.
+                    Pokud budete mít problém s vyplněním, dejte nám vědět osobně nebo e-mailem.
+                </div>
             </div>
         </div>
     </section>
@@ -794,48 +752,6 @@
             }
         });
     });
-
-    // Jednoduché odeslání formuláře pomocí e-mailu (mailto:)
-    // → uprav si prosím e-mail níže na svůj
-    const form = document.getElementById("allergy-form");
-    const successMsg = document.getElementById("form-success");
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const allergies = document.getElementById("allergies").value.trim();
-        const hasAllergies = (form.hasAllergies.value || "").toLowerCase();
-
-        // Základní kontrola
-        if (!name) {
-            alert("Prosíme, vyplňte své jméno.");
-            return;
-        }
-
-        let bodyLines = [];
-        bodyLines.push("Jméno: " + name);
-        if (email) {
-            bodyLines.push("E-mail: " + email);
-        }
-        bodyLines.push("Má alergie / omezení: " + (hasAllergies === "ano" ? "Ano" : "Ne"));
-        bodyLines.push("");
-        bodyLines.push("Popis alergií / omezení:");
-        bodyLines.push(allergies || "neuvedeno");
-
-        const subject = encodeURIComponent("Alergie / omezení na svatbu Veronika & Aleš");
-        const body = encodeURIComponent(bodyLines.join("\n"));
-
-        // TODO: ZMĚŇ SI E-MAIL NA SVŮJ
-        const targetEmail = "svatba@example.com";
-
-        window.location.href = "mailto:" + targetEmail + "?subject=" + subject + "&body=" + body;
-
-        successMsg.style.display = "block";
-    });
 </script>
 </body>
 </html>
-
-
