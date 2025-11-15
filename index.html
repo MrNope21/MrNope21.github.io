@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Svatba Veronika &amp; Aleš</title>
+
+    <!-- Elegantní Google fonty -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --accent: #5a63f2;       /* modrofialová */
+            --accent-soft: #eef0ff;
+            --bg: #f7f7fb;
+            --text: #1a1a1f;
+            --muted: #6b6b7a;
+            --card-bg: #ffffff;
+            --border-radius-lg: 24px;
+            --border-radius-sm: 12px;
+            --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #eef0ff 0, #f7f7fb 45%, #f7f7fb 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 16px 20px 48px;
+        }
+
+        /* NAVBAR */
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            margin: 8px 0 24px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(14px);
+            border-radius: 999px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            position: sticky;
+            top: 8px;
+            z-index: 10;
+        }
+
+        .nav-title {
+            font-family: "Playfair Display", serif;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-heart {
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #5a63f2, #8a5af2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 14px;
+            font-size: 14px;
+        }
+
+        .nav-link {
+            padding: 6px 12px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-weight: 500;
+            transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--accent-soft);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        /* HERO */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 32px;
+            align-items: center;
+            margin-top: 16px;
+            margin-bottom: 40px;
+        }
+
+        .hero-main {
+            padding-right: 12px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(90, 99, 242, 0.06);
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(36px, 5vw, 46px);
+            margin: 0 0 10px;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-date {
+            font-size: 16px;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .hero-text {
+            font-size: 15px;
+            color: var(--muted);
+            max-width: 480px;
+        }
+
+        .hero-highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(90, 99, 242, 0.07);
+            font-size: 13px;
+            color: #2f2f3a;
+        }
+
+        .hero-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-soft);
+            padding: 22px 22px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: -80px;
+            background: radial-gradient(circle at top right, rgba(90, 99, 242, 0.12), transparent 50%);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .hero-card-title {
+            font-family: "Playfair Display", serif;
+            font-size: 20px;
+        }
+
+        .hero-card-subtitle {
+            font-size: 13px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .hero-card-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 14px;
+            margin: 4px 0;
+        }
+
+        .hero-card-label {
+            color: var(--muted);
+        }
+
+        .hero-card-value {
+            font-weight: 600;
+        }
+
+        .hero-chip {
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .hero-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #34d399;
+            margin-right: 6px;
+        }
+
+        /* SECTIONS */
+        section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: 26px;
+            margin-bottom: 6px;
+        }
+
+        .section-sub {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 20px 20px 18px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* DARY & QR */
+        .gifts-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 24px;
+            align-items: center;
+        }
+
+        .gifts-text p {
+            font-size: 15px;
+            margin: 0 0 8px;
+        }
+
+        .gifts-text strong {
+            color: var(--accent);
+        }
+
+        .qr-placeholder {
+            border-radius: var(--border-radius-sm);
+            border: 2px dashed rgba(90, 99, 242, 0.35);
+            padding: 18px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #f9f9ff, #f7f7fb);
+        }
+
+        .qr-box {
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 12px;
+            border-radius: 16px;
+            border: 1px dashed rgba(90, 99, 242, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .qr-note {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* HARMONOGRAM */
+        .timeline {
+            display: grid;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 80px minmax(0, 1fr);
+            gap: 12px;
+            align-items: baseline;
+            padding: 10px 12px;
+            border-radius: 16px;
+            background: #f9f9ff;
+        }
+
+        .timeline-time {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+        }
+
+        .timeline-desc {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* FORM */
+        .form-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+            gap: 24px;
+        }
+
+        .form-note {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .form-note ul {
+            padding-left: 18px;
+            margin: 10px 0 0;
+        }
+
+        form {
+            display: grid;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .form-field {
+            display: grid;
+            gap: 4px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            border-radius: 999px;
+            border: 1px solid #d4d4e0;
+            padding: 9px 12px;
+            font: inherit;
+            background: #fbfbff;
+            outline: none;
+            transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        textarea {
+            border-radius: 16px;
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            background: #ffffff;
+            box-shadow: 0 0 0 2px rgba(90, 99, 242, 0.15);
+        }
+
+        .helper {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 2px;
+        }
+
+        .radio-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid #d4d4e0;
+            font-size: 12px;
+            cursor: pointer;
+            background: #fbfbff;
+        }
+
+        .radio-pill input {
+            margin: 0;
+        }
+
+        button[type="submit"] {
+            margin-top: 4px;
+            border: none;
+            border-radius: 999px;
+            padding: 9px 18px;
+            font: inherit;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #5a63f2, #8a5af2);
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 25px rgba(90, 99, 242, 0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.04);
+            box-shadow: 0 16px 35px rgba(90, 99, 242, 0.45);
+        }
+
+        .btn-icon {
+            font-size: 16px;
+        }
+
+        .form-success {
+            display: none;
+            margin-top: 6px;
+            font-size: 13px;
+            color: #16a34a;
+        }
+
+        /* FOOTER */
+        .footer {
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer span {
+            color: var(--accent);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-main {
+                padding-right: 0;
+            }
+
+            .gifts-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .form-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav {
+                padding-inline: 14px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .page {
+                padding-inline: 14px;
+            }
+
+            .card {
+                padding-inline: 16px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 70px minmax(0, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-title">
+            <div class="nav-heart">♥</div>
+            <span>Veronika &amp; Aleš</span>
+        </div>
+        <div class="nav-links">
+            <a href="#dary" class="nav-link">Dary</a>
+            <a href="#harmonogram" class="nav-link">Harmonogram</a>
+            <a href="#alergie" class="nav-link">Alergie</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-main">
+            <div class="hero-label">
+                <span>Svatební den</span>
+                <span>•</span>
+                <span>Srdečně vás zveme</span>
+            </div>
+            <h1 class="hero-title">Veronika &amp; Aleš</h1>
+            <div class="hero-date">Pátek 10. července 2026 · Zámek Loučeň</div>
+            <p class="hero-text">
+                Tuto stránku jsme připravili pro naše milé hosty. Najdete zde informace o svatebním dni,
+                harmonogram a možnost nám napsat, pokud máte nějaké alergie či stravovací omezení.
+            </p>
+            <div class="hero-highlight">
+                💌 Prosíme, potvrďte svoji účast organizátorům stejně jako u klasické pozvánky.
+            </div>
+        </div>
+
+        <aside class="hero-card">
+            <div class="hero-card-header">
+                <div>
+                    <div class="hero-card-subtitle">Detaily dne</div>
+                    <div class="hero-card-title">Svatba Veronika &amp; Aleš</div>
+                </div>
+                <div class="hero-card-subtitle">10. 7. 2026</div>
+            </div>
+
+            <div class="hero-card-row">
+                <div class="hero-card-label">Obřad</div>
+                <div class="hero-card-value">11:00 · místo u mostu</div>
+            </div>
+            <div class="hero-card-row">
+                <div class="hero-card-label">Hostina</div>
+                <div class="hero-card-value">13:00 · terasa / salonek</div>
+            </div>
+            <div class="hero-card-row">
+                <div class="hero-card-label">Večerní program</div>
+                <div class="hero-card-value">od 16:30 · hudba &amp; tanec</div>
+            </div>
+
+            <div class="hero-chip">
+                <span class="hero-dot"></span>
+                Těšíme se, že s námi na Loučeni prožijete tenhle den. 💙
+            </div>
+        </aside>
+    </header>
+
+    <!-- DARY -->
+    <section id="dary">
+        <h2 class="section-title">Dary &amp; svatební cesta</h2>
+        <p class="section-sub">
+            Klasické svatební dary si nepřejeme – mnohem víc pro nás bude znamenat příspěvek na společnou svatební cestu.
+        </p>
+
+        <div class="card gifts-layout">
+            <div class="gifts-text">
+                <p>
+                    Největším dárkem je pro nás to, že s námi strávíte náš svatební den na Zámku Loučeň. Pokud nám ale chcete udělat
+                    ještě větší radost, budeme vděční za <strong>finanční příspěvek na svatební cestu</strong>.
+                </p>
+                <p>
+                    Na místě bude k dispozici <strong>svatební schránka</strong> a také možnost zaslat příspěvek
+                    <strong>přes QR platbu</strong>. Údaje pro platbu doplníme zde na webu.
+                </p>
+                <p>
+                    Děkujeme, že nám pomůžete vytvořit společné zážitky, na které budeme vzpomínat celý život. ✨
+                </p>
+            </div>
+
+            <div class="qr-placeholder">
+                <div class="qr-box">
+                    <!-- Sem můžeš později vložit <img src="tvuj-qr-kod.png" alt="QR kód pro platbu"> -->
+                    Zde bude<br />QR kód pro platbu
+                </div>
+                <div class="qr-note">
+                    Po vygenerování platebního QR kódu ho stačí nahradit za tento box
+                    (např. obrázkem <code>&lt;img&gt;</code>) nebo vložit oficiální kód od banky.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HARMONOGRAM -->
+    <section id="harmonogram">
+        <h2 class="section-title">Harmonogram svatebního dne</h2>
+        <p class="section-sub">
+            Časy berte jako orientační, ale pomůžou vám se zorientovat, co se kdy bude dít.
+        </p>
+
+        <div class="card">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">10:00</div>
+                    <div>
+                        <div class="timeline-title">Welcome drink</div>
+                        <div class="timeline-desc">
+                            Kde: „Hidden kout“ vzadu, který ukazovala paní Císařová (lounge zóna).<br>
+                            Poznámka: Káva, prosecco a kanapky, pohodové naladění před obřadem.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">11:00</div>
+                    <div>
+                        <div class="timeline-title">Svatební obřad</div>
+                        <div class="timeline-desc">
+                            Kde: Místo u mostu v areálu Zámku Loučeň.<br>
+                            Poznámka: Hladký průběh koordinuje paní Císařová.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">12:00</div>
+                    <div>
+                        <div class="timeline-title">Focení novomanželů a skupinek</div>
+                        <div class="timeline-desc">
+                            Kde: V areálu zámku (bude upřesněno na místě).<br>
+                            Poznámka: Organizaci skupinek má na starosti Kája (seznam skupinek dostane předem),
+                            fotí <strong>Franck Alasseur</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">13:00</div>
+                    <div>
+                        <div class="timeline-title">Svatební oběd</div>
+                        <div class="timeline-desc">
+                            Kde: Terasa (hezké počasí) / salonek (špatné počasí).<br>
+                            Poznámka: Přípitky, proslovy, preferovaná verze menu – SP, TP, HJ.
+                            Žádný „brindák“ ani krmení polévkou. 🙂
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">14:30</div>
+                    <div>
+                        <div class="timeline-title">Krájení svatebního dortu</div>
+                        <div class="timeline-desc">
+                            Kde: Terasa (hezké počasí) / salonek (špatné počasí).<br>
+                            Poznámka: Dort z cukrářské dílny, krájíme spolu,
+                            porce hostům podává personál.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">15:00</div>
+                    <div>
+                        <div class="timeline-title">Focení novomanželů s fotografem</div>
+                        <div class="timeline-desc">
+                            Kde: V areálu zámku (podle domluvy fotografa).<br>
+                            Poznámka: Párty focení i romantické fotky, fotí <strong>Franck Alasseur</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">16:30</div>
+                    <div>
+                        <div class="timeline-title">První tanec novomanželů &amp; živá hudba</div>
+                        <div class="timeline-desc">
+                            Kde: Terasa (hezké počasí) / salonek (špatné počasí).<br>
+                            Poznámka: První tanec na vybranou píseň hranou kapelou, poté pokračuje živá hudba.
+                            Po tanci je možné rozbít talíř pro štěstí.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-time">17:15</div>
+                    <div>
+                        <div class="timeline-title">První hra – židle &amp; boty</div>
+                        <div class="timeline-desc">
+                            Kde: Terasa (hezké počasí) / salonek (špatné počasí).<br>
+                            Poznámka: Zábavná hra s otázkami, moderují družičky / Lukáš.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ALERGIE FORMULÁŘ -->
+    <section id="alergie">
+        <h2 class="section-title">Alergie &amp; stravovací omezení</h2>
+        <p class="section-sub">
+            Abychom mohli přizpůsobit jídelníček na svatební hostinu, prosíme vás o vyplnění krátkého formuláře.
+        </p>
+
+        <div class="card form-grid">
+            <div class="form-note">
+                <p>
+                    Prosíme, napište nám, pokud máte <strong>alergie na potraviny</strong>, případně jiná
+                    stravovací omezení (např. bezlepková dieta, vegetariánství, intolerance laktózy apod.).
+                </p>
+                <ul>
+                    <li>Uveďte, <strong>na co konkrétně</strong> jste alergičtí či co nejíte.</li>
+                    <li>Pokud vyplňujete za více osob, napište jejich jména a omezení zvlášť.</li>
+                    <li>Nemáte alergie? Klidně napište „bez omezení“ – pomůže nám to při plánování.</li>
+                </ul>
+            </div>
+
+            <div>
+                <form id="allergy-form">
+                    <div class="form-field">
+                        <label for="name">Jméno a příjmení</label>
+                        <input type="text" id="name" name="name" required placeholder="Např. Jan Novák" />
+                        <div class="helper">Můžete uvést i více osob, pokud jste jedna domácnost.</div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">E-mail (volitelné)</label>
+                        <input type="email" id="email" name="email" placeholder="Pro případné upřesnění" />
+                    </div>
+
+                    <div class="form-field">
+                        <label>Máte potravinové alergie nebo omezení?</label>
+                        <div class="radio-group">
+                            <label class="radio-pill">
+                                <input type="radio" name="hasAllergies" value="ano" checked />
+                                <span>Ano</span>
+                            </label>
+                            <label class="radio-pill">
+                                <input type="radio" name="hasAllergies" value="ne" />
+                                <span>Ne, bez omezení</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="allergies">Popis alergií / omezení</label>
+                        <textarea id="allergies" name="allergies" placeholder="Např. silná alergie na ořechy, nejím ryby, bezlepková dieta..."></textarea>
+                        <div class="helper">Čím přesnější budete, tím lépe dokážeme jídlo přizpůsobit.</div>
+                    </div>
+
+                    <button type="submit">
+                        <span class="btn-icon">📨</span>
+                        <span>Odeslat</span>
+                    </button>
+                    <div id="form-success" class="form-success">
+                        Děkujeme, vaše informace o alergiích byly připraveny k odeslání v e-mailu.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        S láskou připraveno pro naši svatbu · <span>Veronika &amp; Aleš</span>
+    </footer>
+</div>
+
+<script>
+    // Hladké skrolování u anchor odkazů
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("href").substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                e.preventDefault();
+                targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    });
+
+    // Jednoduché odeslání formuláře pomocí e-mailu (mailto:)
+    // → uprav si prosím e-mail níže na svůj
+    const form = document.getElementById("allergy-form");
+    const successMsg = document.getElementById("form-success");
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const allergies = document.getElementById("allergies").value.trim();
+        const hasAllergies = (form.hasAllergies.value || "").toLowerCase();
+
+        // Základní kontrola
+        if (!name) {
+            alert("Prosíme, vyplňte své jméno.");
+            return;
+        }
+
+        let bodyLines = [];
+        bodyLines.push("Jméno: " + name);
+        if (email) {
+            bodyLines.push("E-mail: " + email);
+        }
+        bodyLines.push("Má alergie / omezení: " + (hasAllergies === "ano" ? "Ano" : "Ne"));
+        bodyLines.push("");
+        bodyLines.push("Popis alergií / omezení:");
+        bodyLines.push(allergies || "neuvedeno");
+
+        const subject = encodeURIComponent("Alergie / omezení na svatbu Veronika & Aleš");
+        const body = encodeURIComponent(bodyLines.join("\n"));
+
+        // TODO: ZMĚŇ SI E-MAIL NA SVŮJ
+        const targetEmail = "svatba@example.com";
+
+        window.location.href = "mailto:" + targetEmail + "?subject=" + subject + "&body=" + body;
+
+        successMsg.style.display = "block";
+    });
+</script>
+</body>
+</html>
