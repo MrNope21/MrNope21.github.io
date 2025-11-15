@@ -289,6 +289,13 @@
             justify-content: center;
             font-size: 13px;
             color: var(--muted);
+            overflow: hidden;
+        }
+
+        .qr-box img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
         }
 
         .qr-note {
@@ -590,12 +597,11 @@
 
             <div class="qr-placeholder">
                 <div class="qr-box">
-                    <!-- Sem můžeš později vložit <img src="tvuj-qr-kod.png" alt="QR kód pro platbu"> -->
-                    Zde bude<br />QR kód pro platbu
+                    <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/qr%20dummy.png?raw=true"
+                         alt="QR kód pro platbu" />
                 </div>
                 <div class="qr-note">
-                    Po vygenerování platebního QR kódu ho stačí nahradit za tento box
-                    (např. obrázkem <code>&lt;img&gt;</code>) nebo vložit oficiální kód od banky.
+                    Tento QR kód je aktuálně ukázkový. Později ho můžete nahradit finálním kódem pro platbu z vaší banky.
                 </div>
             </div>
         </div>
