@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="icon" type="image/png" href="https://github.com/MrNope21/MrNope21.github.io/blob/main/favicon.png?raw=true">
+    <link rel="icon" type="image/png" href="https://github.com/MrNope21/MrNope21.github.io/blob/main/favicon.png?raw=true">
     <title>Svatba Veronika &amp; Aleš</title>
-	
 
-    <!-- Elegantní Google fonty -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
 
     <style>
         :root {
-            /* MODROFIALOVÁ / INDIGO AKCENTNÍ BARVA (#5950FF) */
             --accent: #5950FF;
             --accent-soft: #e4e3ff;
             --bg: #f7f7fb;
@@ -22,11 +19,17 @@
             --border-radius-lg: 24px;
             --border-radius-sm: 12px;
             --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+            --page-width: 1120px;
+            --page-padding: 20px;
+            --nav-height: 80px;
+            --nav-gap: 28px;
+            --nav-offset: 20px;
+            --side-width: clamp(340px, 38vw, 460px);
+            --side-right: max(12px, calc((100vw - var(--page-width)) / 2 + var(--page-padding)));
+            --side-left: calc(100vw - var(--side-right) - var(--side-width));
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -36,65 +39,40 @@
             line-height: 1.6;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        a { color: inherit; text-decoration: none; }
 
         .page {
-            max-width: 1120px;
+            max-width: var(--page-width);
             margin: 0 auto;
-            padding: 16px 20px 48px;
+            padding: 16px var(--page-padding) 48px;
         }
 
         /* NAVBAR */
         .nav {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 18px;
-            margin: 8px 0 24px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(14px);
-            border-radius: 999px;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-            position: sticky;
-            top: 8px;
-            z-index: 10;
-        }
-
-        .nav-title {
-            font-family: "Playfair Display", serif;
-            font-size: 18px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-heart {
-            width: 20px;
-            height: 20px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #5950FF, #8a6bff);
-            display: inline-flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px 8px;
             justify-content: center;
-            font-size: 12px;
-            color: white;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 14px;
-            font-size: 14px;
+            padding: 10px 14px;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.9), rgba(228, 227, 255, 0.9));
+            backdrop-filter: blur(16px);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            position: fixed;
+            top: calc(var(--page-padding) + var(--nav-offset));
+            left: calc(50% + (var(--page-width) / 2) - var(--side-width) - var(--page-padding));
+            z-index: 10;
+            width: var(--side-width);
+            border: 1px solid rgba(89, 80, 255, 0.08);
+            min-height: var(--nav-height);
         }
 
         .nav-link {
-            padding: 6px 12px;
-            border-radius: 999px;
+            padding: 6px 10px;
+            border-radius: var(--border-radius-sm);
             color: var(--muted);
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 12px;
             transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
         }
 
@@ -107,15 +85,21 @@
         /* HERO */
         .hero {
             display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            grid-template-columns: minmax(0, 1.2fr) var(--side-width);
             gap: 32px;
-            align-items: center;
-            margin-top: 16px;
-            margin-bottom: 32px;
+            align-items: flex-start;
+            margin-top: 24px;
+            margin-bottom: 48px;
         }
 
-        .hero-main {
-            padding-right: 12px;
+        .hero-main { padding-right: 12px; }
+
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: var(--side-width);
+            padding-top: calc(var(--nav-height) + var(--nav-gap) + var(--nav-offset));
         }
 
         .hero-label {
@@ -127,7 +111,7 @@
             background: rgba(89, 80, 255, 0.08);
             color: var(--accent);
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 10px;
         }
 
@@ -147,7 +131,7 @@
         .hero-text {
             font-size: 15px;
             color: var(--muted);
-            max-width: 480px;
+            max-width: 520px;
         }
 
         .hero-highlight {
@@ -169,6 +153,9 @@
             padding: 22px 22px 20px;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            max-width: var(--side-width);
+            justify-self: end;
         }
 
         .hero-card::before {
@@ -208,13 +195,8 @@
             margin: 4px 0;
         }
 
-        .hero-card-label {
-            color: var(--muted);
-        }
-
-        .hero-card-value {
-            font-weight: 600;
-        }
+        .hero-card-label { color: var(--muted); }
+        .hero-card-value { font-weight: 600; text-align: right; }
 
         .hero-chip {
             margin-top: 14px;
@@ -232,9 +214,7 @@
         }
 
         /* SECTIONS */
-        section {
-            margin-bottom: 40px;
-        }
+        section { margin-bottom: 40px; }
 
         .section-title {
             font-family: "Playfair Display", serif;
@@ -255,7 +235,7 @@
             box-shadow: var(--shadow-soft);
         }
 
-        /* SELFIE SEKCE – NOVÉ ROZLOŽENÍ (FOTKA VPRAVO, ČTVEREC) */
+        /* SELFIE */
         .couple-photo-card {
             margin-bottom: 40px;
             background: var(--card-bg);
@@ -291,7 +271,7 @@
         }
 
         .photo-wrapper {
-            flex: 0 0 260px; /* šířka čtverce */
+            flex: 0 0 260px;
             max-width: 260px;
             margin-left: auto;
         }
@@ -299,7 +279,7 @@
         .photo-frame {
             position: relative;
             width: 100%;
-            padding-top: 100%; /* ČTVEREC */
+            padding-top: 100%;
             border-radius: 22px;
             overflow: hidden;
             background: linear-gradient(135deg, #ddd8ff, #f7f7fb);
@@ -337,7 +317,7 @@
             margin-left: auto;
         }
 
-        /* DARY & QR + STYL */
+        /* DARY */
         .gifts-layout {
             display: grid;
             grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
@@ -345,14 +325,8 @@
             align-items: center;
         }
 
-        .gifts-text p {
-            font-size: 15px;
-            margin: 0 0 8px;
-        }
-
-        .gifts-text strong {
-            color: var(--accent);
-        }
+        .gifts-text p { font-size: 15px; margin: 0 0 8px; }
+        .gifts-text strong { color: var(--accent); }
 
         .style-list {
             list-style: none;
@@ -390,16 +364,8 @@
             overflow: hidden;
         }
 
-        .qr-box img {
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-        }
-
-        .qr-note {
-            font-size: 12px;
-            color: var(--muted);
-        }
+        .qr-box img { max-width: 100%; max-height: 100%; display: block; }
+        .qr-note { font-size: 12px; color: var(--muted); }
 
         /* HARMONOGRAM */
         .timeline {
@@ -408,29 +374,27 @@
             font-size: 14px;
         }
 
-        .timeline-item {
+        .timeline-row {
             display: grid;
-            grid-template-columns: 80px minmax(0, 1fr);
+            grid-template-columns: 96px minmax(0, 1fr) minmax(0, 1fr);
             gap: 12px;
-            align-items: baseline;
-            padding: 10px 12px;
-            border-radius: 16px;
-            background: #ecebff;
+            align-items: center;
         }
 
-        .timeline-time {
+        .timeline-cell {
+            background: #ecebff;
+            border-radius: 999px;
+            padding: 8px 14px;
+        }
+
+        .timeline-cell.time {
             font-weight: 700;
             color: var(--accent);
+            text-align: center;
         }
 
-        .timeline-title {
-            font-weight: 600;
-        }
-
-        .timeline-desc {
-            color: var(--muted);
-            font-size: 13px;
-        }
+        .timeline-cell.activity { font-weight: 600; }
+        .timeline-cell.place { color: var(--muted); }
 
         /* FORM / CTA */
         .form-grid {
@@ -439,10 +403,7 @@
             gap: 24px;
         }
 
-        .form-note {
-            font-size: 14px;
-            color: var(--muted);
-        }
+        .form-note { font-size: 14px; color: var(--muted); }
 
         .form-note ul {
             padding-left: 18px;
@@ -458,18 +419,9 @@
             height: 100%;
         }
 
-        .cta-label {
-            font-size: 13px;
-            color: var(--muted);
-        }
-
-        .cta-label.top {
-            margin-bottom: 2px;
-        }
-
-        .cta-label.bottom {
-            margin-top: 4px;
-        }
+        .cta-label { font-size: 13px; color: var(--muted); }
+        .cta-label.top { margin-bottom: 2px; }
+        .cta-label.bottom { margin-top: 4px; }
 
         .cta-button {
             display: inline-flex;
@@ -497,15 +449,19 @@
             box-shadow: 0 18px 40px rgba(70, 62, 210, 0.8);
         }
 
-        .cta-icon {
-            font-size: 18px;
+        .cta-icon { font-size: 18px; }
+
+        /* PALETTE */
+        .palette-layout { align-items: start; }
+
+        .palette-text p {
+            font-size: 15px;
+            margin: 0 0 8px;
         }
 
-        /* DRESSCODE PALETTE */
         .palette {
-            margin-top: 18px;
+            margin-top: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
         }
 
@@ -525,15 +481,8 @@
             gap: 6px;
         }
 
-        .palette-title-ok::before {
-            content: "✔";
-            color: #16a34a;
-        }
-
-        .palette-title-no::before {
-            content: "✖";
-            color: #dc2626;
-        }
+        .palette-title-ok::before { content: "✓"; color: #16a34a; }
+        .palette-title-no::before { content: "✗"; color: #dc2626; }
 
         .swatches {
             display: flex;
@@ -564,92 +513,36 @@
             margin-top: 20px;
         }
 
-        .footer span {
-            color: var(--accent);
-        }
+        .footer span { color: var(--accent); }
 
         /* RESPONSIVE */
         @media (max-width: 850px) {
-            .hero {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .hero-main {
-                padding-right: 0;
-            }
-
-            .gifts-layout {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .form-grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .photo-layout {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .photo-wrapper,
-            .photo-note {
-                margin-left: 0;
-                max-width: 100%;
-                text-align: left;
-            }
-
-            .photo-note {
-                max-width: 100%;
-            }
+            .nav { left: 12px; right: 12px; width: calc(100% - 24px); }
+            .hero { grid-template-columns: minmax(0, 1fr); margin-top: calc(var(--nav-height) + var(--nav-gap) + 12px); }
+            .hero-main { padding-right: 0; }
+            .hero-side { width: 100%; align-items: flex-start; }
+            .gifts-layout { grid-template-columns: minmax(0, 1fr); }
+            .form-grid { grid-template-columns: minmax(0, 1fr); }
+            .photo-layout { flex-direction: column; align-items: flex-start; }
+            .photo-wrapper, .photo-note { margin-left: 0; max-width: 100%; text-align: left; }
+            .photo-note { max-width: 100%; }
         }
 
         @media (max-width: 640px) {
-            .nav {
-                padding-inline: 14px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .page {
-                padding-inline: 14px;
-            }
-
-            .card {
-                padding-inline: 16px;
-            }
-
-            .timeline-item {
-                grid-template-columns: 70px minmax(0, 1fr);
-            }
+            .nav { padding-inline: 14px; }
+            .nav { width: calc(100% - 24px); }
+            .page { padding-inline: 14px; }
+            .card { padding-inline: 16px; }
+            .timeline-row { grid-template-columns: 70px minmax(0, 1fr); }
+            .timeline-cell.place { grid-column: 2 / -1; }
         }
     </style>
 </head>
 <body>
 <div class="page">
-    <!-- NAV -->
-    <nav class="nav">
-        <div class="nav-title">
-            <div class="nav-heart">♥</div>
-            <span>Veronika &amp; Aleš</span>
-        </div>
-        <div class="nav-links">
-            <a href="#styl" class="nav-link">Styl svatby</a>
-            <a href="#dary" class="nav-link">Dary</a>
-            <a href="#harmonogram" class="nav-link">Harmonogram</a>
-            <a href="#alergie" class="nav-link">Účast &amp; alergie</a>
-        </div>
-    </nav>
-
-    <!-- HERO -->
     <header class="hero">
         <div class="hero-main">
-            <div class="hero-label">
-                <span>Svatební den</span>
-                <span>•</span>
-                <span>Srdečně vás zveme</span>
-            </div>
+            
             <h1 class="hero-title">Veronika &amp; Aleš</h1>
             <div class="hero-date">Pátek 10. července 2026 · Zámek Loučeň</div>
             <p class="hero-text">
@@ -661,73 +554,53 @@
             </div>
         </div>
 
-        <aside class="hero-card">
-            <div class="hero-card-header">
-                <div>
-                    <div class="hero-card-subtitle">Detaily dne</div>
-                    <div class="hero-card-title">Svatba Veronika &amp; Aleš</div>
-                </div>
-            </div>
-
-            <div class="hero-card-row">
-                <div class="hero-card-label">Datum</div>
-                <div class="hero-card-value">10. 7. 2026</div>
-            </div>
-            <div class="hero-card-row">
-                <div class="hero-card-label">Místo</div>
-                <div class="hero-card-value">Zámek Loučeň</div>
-            </div>
-            <div class="hero-card-row">
-                <div class="hero-card-label">Obřad</div>
-                <div class="hero-card-value">11:00 · místo u mostu</div>
-            </div>
-            <div class="hero-card-row">
-                <div class="hero-card-label">Hostina</div>
-                <div class="hero-card-value">13:00 · terasa / salonek</div>
-            </div>
-            <div class="hero-card-row">
-                <div class="hero-card-label">Večerní program</div>
-                <div class="hero-card-value">od 16:30 · hudba &amp; tanec</div>
-            </div>
-
-            <div class="hero-chip">
-                <span class="hero-dot"></span>
-                Těšíme se, že s námi na Loučeni prožijete tenhle den. 💜
-            </div>
-        </aside>
-    </header>
-
-    <!-- SELFIE FOTO VERONIKA & ALEŠ – FOTO VPRAVO, ČTVEREC -->
-    <section class="couple-photo-card">
-        <div class="couple-photo-title">Veronika &amp; Aleš</div>
-        <div class="couple-photo-sub">
-            Sem přijdou naše společné fotky – ať víte, koho na Loučeni vlastně slavíte. 🙂
-        </div>
-
-        <div class="photo-layout">
-            <div class="photo-text-space">
-                Místo pro jednu společnou fotografii novomanželů v modrofialovém ladění stránky.
-                Můžete použít oblíbenou selfie z výletu, ze zásnub nebo fotku, která vás prostě vystihuje.
-            </div>
-
-            <div class="photo-wrapper">
-                <div class="photo-frame">
-                    <div class="photo-frame-inner">
-                        <!-- ZDE VLOŽTE VAŠI SELFIE:
-                         <img src="img/veronika-a-ales-selfie.jpg" alt="Veronika a Aleš" />
-                        -->
-                        Zde bude vaše selfie fotografie<br>
-                        (čtverec, ideálně 1000×1000 px).
+        <div class="hero-side">
+            <nav class="nav">
+                <a href="#styl" class="nav-link">Styl &amp; barvy</a>
+                <a href="#dary" class="nav-link">Dary &amp; svatební cesta</a>
+                <a href="#harmonogram" class="nav-link">Harmonogram</a>
+                <a href="#fotky" class="nav-link">Sdílení fotek</a>
+                <a href="#alergie" class="nav-link">Účast</a>
+            </nav>
+            <aside class="hero-card">
+                <div class="hero-card-header">
+                    <div>
+                        <div class="hero-card-subtitle">Detaily dne</div>
+                        <div class="hero-card-title">Svatba Veronika &amp; Aleš</div>
                     </div>
                 </div>
-                <div class="photo-note">
-                    Jedna fotka úplně stačí – čtvercový formát se na web hodí nejlépe.
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- STYL SVATBY & DRESS CODE -->
+                <div class="hero-card-row">
+                    <div class="hero-card-label">Datum</div>
+                    <div class="hero-card-value">10. 7. 2026</div>
+                </div>
+                <div class="hero-card-row">
+                    <div class="hero-card-label">Místo</div>
+                    <div class="hero-card-value">Zámek Loučeň</div>
+                </div>
+                <div class="hero-card-row">
+                    <div class="hero-card-label">Obřad</div>
+                    <div class="hero-card-value">11:00 · Zámecký park</div>
+                </div>
+                <div class="hero-card-row">
+                    <div class="hero-card-label">Hostina</div>
+                    <div class="hero-card-value">13:00 · Zámecká terasa</div>
+                </div>
+                <div class="hero-card-row">
+                    <div class="hero-card-label">Večerní program</div>
+                    <div class="hero-card-value">19:00 · Večerní raut &amp; živá hudba</div>
+                </div>
+
+                <div class="hero-chip">
+                    <span class="hero-dot"></span>
+                    Těšíme se, že s námi na Loučeni prožijete tenhle den. 💜
+                </div>
+            </aside>
+        </div>
+    </header>
+
+    
+
     <section id="styl">
         <h2 class="section-title">Styl &amp; barvy svatby</h2>
         <p class="section-sub">
@@ -735,6 +608,8 @@
         </p>
 
         <div class="card">
+            <div class="palette-layout gifts-layout">
+                <div class="palette-text">
             <p>
                 Dress code bude <strong>klasicky svatební podle českých poměrů</strong> – nic přehnaně formálního,
                 ale spíše slavnostní:
@@ -742,85 +617,45 @@
             <ul class="style-list">
                 <li><strong>Pánové:</strong> oblek nebo saková varianta (košile, kalhoty, sako), vhodná je kravata nebo motýlek.</li>
                 <li><strong>Dámy:</strong> šaty (koktejlové, midi, maxi), případně elegantní overal či sukně s halenkou.</li>
-                <li>Obuv a doplňky zvolte tak, abyste se cítili pohodlně v zámeckém prostředí a zvládli v nich i večerní tanec.</li>
+                <li>Obuv a doplňky volte tak, abyste se cítili pohodlně v zámeckém prostředí a zvládli v nich i večerní tanec.</li>
             </ul>
             <p style="margin-top: 10px;">
                 <strong>Hlavní svatební barva je modrofialová.</strong> Pokud budete chtít, můžete ji zakomponovat
                 do svého oblečení nebo doplňků – šaty, kravata, motýlek, kapesníček, šperky, manžetové knoflíčky apod.
             </p>
-            <p>
-                Jen prosíme, aby čistě bílé „svatební“ šaty zůstaly nevěstě. 🙂
-            </p>
+            <p>Jen prosíme, aby čistě bílé „svatební“ šaty zůstaly nevěstě. 💜</p>
 
-            <div class="palette">
+                </div>
+
+                <div class="palette">
                 <div class="palette-block">
-                    <div class="palette-title palette-title-ok">
-                        Barvy, které se k modrofialové hodí
-                    </div>
+                    <div class="palette-title palette-title-ok">Barvy, které se k modrofialové hodí</div>
                     <div class="swatches">
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#f5f5f5;"></div>
-                            <span>slonová kost / krémová</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#e6e4ff;"></div>
-                            <span>světlá fialková</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#262a40;"></div>
-                            <span>tmavě modrá / námořnická</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#f5dde5;"></div>
-                            <span>pudrově růžová</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#d5e7da;"></div>
-                            <span>jemná šalvějová zelená</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#b9b9c6;"></div>
-                            <span>světlá šedá</span>
-                        </div>
+                        <div class="swatch"><div class="swatch-color" style="background:#f5f5f5;"></div><span>slonová kost / krémová</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#e6e4ff;"></div><span>světlá fialková</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#262a40;"></div><span>tmavě modrá / námořnická</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#f5dde5;"></div><span>pudrově růžová</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#d5e7da;"></div><span>jemná šalvějová zelená</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#b9b9c6;"></div><span>světlá šedá</span></div>
                     </div>
                 </div>
 
                 <div class="palette-block">
-                    <div class="palette-title palette-title-no">
-                        Barvy, které se moc nehodí
-                    </div>
+                    <div class="palette-title palette-title-no">Barvy, které se moc nehodí</div>
                     <div class="swatches">
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#ff0000;"></div>
-                            <span>křiklavě červená</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#ffea00;"></div>
-                            <span>neonově žlutá</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#00ff66;"></div>
-                            <span>neonově zelená</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#ff7a00;"></div>
-                            <span>křiklavě oranžová</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#000000;"></div>
-                            <span>celá postava v černé („funebrácký“ total look)</span>
-                        </div>
-                        <div class="swatch">
-                            <div class="swatch-color" style="background:#ffffff;"></div>
-                            <span>celé bílé šaty „jako nevěsta“</span>
-                        </div>
+                        <div class="swatch"><div class="swatch-color" style="background:#ff0000;"></div><span>křiklavě červená</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#ffea00;"></div><span>neonově žlutá</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#00ff66;"></div><span>neonově zelená</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#ff7a00;"></div><span>křiklavě oranžová</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#000000;"></div><span>celá postava v černé (funebrácký total look)</span></div>
+                        <div class="swatch"><div class="swatch-color" style="background:#ffffff;"></div><span>celé bílé šaty „jako nevěsta“</span></div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </section>
 
-    <!-- DARY -->
     <section id="dary">
         <h2 class="section-title">Dary &amp; svatební cesta</h2>
         <p class="section-sub">
@@ -838,7 +673,7 @@
                     <strong>přes QR platbu</strong>. Údaje pro platbu doplníme zde na webu.
                 </p>
                 <p>
-                    Děkujeme, že nám pomůžete vytvořit společné zážitky, na které budeme vzpomínat celý život. ✨
+                    Děkujeme, že nám pomůžete vytvořit společné zážitky, na které budeme vzpomínat celý život. 💜
                 </p>
             </div>
 
@@ -854,7 +689,6 @@
         </div>
     </section>
 
-    <!-- HARMONOGRAM -->
     <section id="harmonogram">
         <h2 class="section-title">Harmonogram svatebního dne</h2>
         <p class="section-sub">
@@ -863,103 +697,118 @@
 
         <div class="card">
             <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-time">10:00</div>
-                    <div>
-                        <div class="timeline-title">Welcome drink</div>
-                        <div class="timeline-desc">
-                            Kde: „Hidden kout“ vzadu, který ukazovala paní Císařová (lounge zóna).<br>
-                            Poznámka: Káva, prosecco a kanapky, pohodové naladění před obřadem.
-                        </div>
-                    </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">10:00</div>
+                    <div class="timeline-cell activity">Welcome drink</div>
+                    <div class="timeline-cell place">Lounge zóna</div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-time">11:00</div>
-                    <div>
-                        <div class="timeline-title">Svatební obřad</div>
-                        <div class="timeline-desc">
-                            Kde: Místo u mostu v areálu Zámku Loučeň.<br>
-                            Poznámka: Hladký průběh koordinuje paní Císařová.
-                        </div>
-                    </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">11:00</div>
+                    <div class="timeline-cell activity">Svatební obřad</div>
+                    <div class="timeline-cell place">Zámecký park</div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-time">12:00</div>
-                    <div>
-                        <div class="timeline-title">Focení novomanželů a skupinek</div>
-                        <div class="timeline-desc">
-                            Kde: V areálu zámku (bude upřesněno na místě).<br>
-                            Poznámka: Organizaci skupinek má na starosti Kája (seznam skupinek dostane předem),
-                            fotí <strong>Franck Alasseur</strong>.
-                        </div>
-                    </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">12:00</div>
+                    <div class="timeline-cell activity">Focení novomanželů a skupinek</div>
+                    <div class="timeline-cell place">Zámecký park</div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-time">13:00</div>
-                    <div>
-                        <div class="timeline-title">Svatební oběd</div>
-                        <div class="timeline-desc">
-                            Kde: Terasa (hezké počasí) / salonek (špatné počasí).<br>
-                            Poznámka: Přípitky, proslovy, preferovaná verze menu – SP, TP, HJ.
-                            Žádný „brindák“ ani krmení polévkou. 🙂
-                        </div>
-                    </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">13:00</div>
+                    <div class="timeline-cell activity">Svatební oběd</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-time">14:30</div>
-                    <div>
-                        <div class="timeline-title">Krájení svatebního dortu</div>
-                        <div class="timeline-desc">
-                            Kde: Terasa (hezké počasí) / salonek (špatné počasí).<br>
-                            Poznámka: Dort z cukrářské dílny, krájíme spolu,
-                            porce hostům podává personál.
-                        </div>
-                    </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">14:30</div>
+                    <div class="timeline-cell activity">Krájení svatebního dortu</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-time">15:00</div>
-                    <div>
-                        <div class="timeline-title">Focení novomanželů s fotografem</div>
-                        <div class="timeline-desc">
-                            Kde: V areálu zámku (podle domluvy fotografa).<br>
-                            Poznámka: Párty focení i romantické fotky, fotí <strong>Franck Alasseur</strong>.
-                        </div>
-                    </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">15:30</div>
+                    <div class="timeline-cell activity">Svatební kvíz</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-time">16:30</div>
-                    <div>
-                        <div class="timeline-title">První tanec novomanželů &amp; živá hudba</div>
-                        <div class="timeline-desc">
-                            Kde: Terasa (hezké počasí) / salonek (špatné počasí).<br>
-                            Poznámka: První tanec na vybranou píseň hranou kapelou, poté pokračuje živá hudba.
-                            Po tanci je možné rozbít talíř pro štěstí.
-                        </div>
-                    </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">16:30</div>
+                    <div class="timeline-cell activity">První tanec novomanželů</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
                 </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-time">17:15</div>
-                    <div>
-                        <div class="timeline-title">První hra – židle &amp; boty</div>
-                        <div class="timeline-desc">
-                            Kde: Terasa (hezké počasí) / salonek (špatné počasí).<br>
-                            Poznámka: Zábavná hra s otázkami, moderují družičky / Lukáš.
-                        </div>
-                    </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">17:15</div>
+                    <div class="timeline-cell activity">Hra dvou párů bot</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
                 </div>
-
+                <div class="timeline-row">
+                    <div class="timeline-cell time">17:45</div>
+                    <div class="timeline-cell activity">Hudební zábava</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">18:30</div>
+                    <div class="timeline-cell activity">Vyvazování kytice</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">19:00</div>
+                    <div class="timeline-cell activity">Večerní raut &amp; živá hudba</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">20:30</div>
+                    <div class="timeline-cell activity">Rok s novomanželi</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">21:15</div>
+                    <div class="timeline-cell activity">Hudební zábava</div>
+                    <div class="timeline-cell place">Zámecká terasa</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">22:00</div>
+                    <div class="timeline-cell activity">Party &amp; DJ</div>
+                    <div class="timeline-cell place">Zámecký salónek</div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-cell time">2:00</div>
+                    <div class="timeline-cell activity">Konec akce</div>
+                    <div class="timeline-cell place">Konec akce</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ÚČAST, ALERGIE & DOTAZNÍK -->
+    <section id="fotky">
+        <h2 class="section-title">Sdílení fotek ze svatby</h2>
+        <p class="section-sub">
+            Podělte se o svoje momentky ze dne. Fotky z telefonu i z foťáku sem můžete nahrát hned po svatbě, ať je máme všechny pohromadě.
+        </p>
+
+        <div class="card form-grid">
+            <div class="form-note">
+                <p>
+                    Nahrajte prosím cokoliv, co zachycuje náladu dne: příjezd, obřad, detaily výzdoby, skupinky i taneční parket. Čím dříve, tím lépe,
+                    ať se můžeme podívat na to, jak jste den viděli vy.
+                </p>
+                <p>
+                    Pokud máte hodně fotek nebo videí, klidně je zabalte do ZIPu. Název složky/zipu můžete pojmenovat svým jménem, ať víme, komu poděkovat.
+                </p>
+            </div>
+
+            <div class="cta-box">
+                <div class="cta-label top">
+                    Otevřete sdílený disk a přetáhněte své fotky nebo videa sem.
+                </div>
+                <!-- TODO: Nahradte odkaz na sdílený disk vaší skutečnou adresou -->
+                <a class="cta-button" href="https://drive.example.com/sdileny-disk-svatba" target="_blank" rel="noopener noreferrer">
+                    <span class="cta-icon">📤</span>
+                    <span>Nahrát fotky</span>
+                </a>
+                <div class="cta-label bottom">
+                    Pokud by odkaz nefungoval, dejte nám vědět a pošleme vám přímý přístup nebo jinou cestu.
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="alergie">
         <h2 class="section-title">Účast, alergie &amp; stravovací omezení</h2>
         <p class="section-sub">
@@ -969,11 +818,9 @@
 
         <div class="card form-grid">
             <div class="form-note">
-                <p>
-                    V dotazníku se vás zeptáme na několik důležitých věcí:
-                </p>
+                <p>V dotazníku se vás zeptáme na několik důležitých věcí:</p>
                 <ul>
-                    <li><strong>Kdo se účastní</strong> – za každého pozvaného, včetně případného +1 (např. partner/ka).</li>
+                    <li><strong>Kdo se účastní</strong> – za každého pozvaného, včetně případného +1.</li>
                     <li><strong>Potvrzení účasti</strong> – jestli se svatby zúčastníte nebo ne.</li>
                     <li><strong>Stravovací omezení a alergie</strong> – bezlepková dieta, vegetariánství, intolerance laktózy, alergie na ořechy atd.</li>
                 </ul>
@@ -985,17 +832,14 @@
 
             <div class="cta-box">
                 <div class="cta-label top">
-                    Kliknutím na tlačítko níže otevřete svatební dotazník v Google Docs / Google Forms.
+                    Kliknutím na tlačítko níže otevřete svatební dotazník v Google Forms.
                 </div>
-
-                <!-- TODO: Nahraď URL pod href svojí skutečnou adresou Google formuláře -->
                 <a class="cta-button"
                    href="https://docs.google.com/...TVUJ_DOTAZNIK..."
                    target="_blank" rel="noopener noreferrer">
                     <span class="cta-icon">📝</span>
                     <span>Vyplnit svatební dotazník</span>
                 </a>
-
                 <div class="cta-label bottom">
                     Prosíme o vyplnění <strong>co nejdříve po obdržení pozvánky</strong>.
                     Pokud budete mít problém s vyplněním, dejte nám vědět osobně nebo e-mailem.
@@ -1024,3 +868,4 @@
 </script>
 </body>
 </html>
+
