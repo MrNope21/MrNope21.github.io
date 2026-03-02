@@ -150,15 +150,18 @@
         .hero-highlight {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             width: 100%;
             max-width: var(--side-width);
             margin-top: 28px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: rgba(89, 80, 255, 0.09);
-            font-size: 13px;
-            color: #2f2f3a;
+            padding: 14px 16px;
+            border-radius: var(--border-radius-lg);
+            background: radial-gradient(circle at top right, rgba(89, 80, 255, 0.12), transparent 62%), var(--card-bg);
+            box-shadow: var(--shadow-soft);
+            border: 2px solid #797bff;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1f1f2f;
         }
 
         .hero-card {
@@ -551,10 +554,24 @@
 
         /* RESPONSIVE */
         @media (max-width: 850px) {
-            .nav { left: 12px; right: 12px; width: calc(100% - 24px); }
-            .hero { grid-template-columns: minmax(0, 1fr); margin-top: calc(var(--nav-height) + var(--nav-gap) + 12px); }
+            .page { padding-top: calc(var(--nav-height) + 18px); }
+            .nav {
+                left: 12px;
+                right: 12px;
+                width: calc(100% - 24px);
+                min-height: auto;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                overflow-y: hidden;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .nav::-webkit-scrollbar { display: none; }
+            .hero { grid-template-columns: minmax(0, 1fr); margin-top: 12px; }
             .hero-main { padding-right: 0; }
-            .hero-side { width: 100%; align-items: flex-start; }
+            .hero-side { width: 100%; align-items: flex-start; padding-top: 12px; }
             .gifts-layout { grid-template-columns: minmax(0, 1fr); }
             .form-grid { grid-template-columns: minmax(0, 1fr); }
             .photo-layout { flex-direction: column; align-items: flex-start; }
@@ -589,8 +606,8 @@
         <div class="hero-side">
             <nav class="nav">
                 <a href="#styl" class="nav-link">Styl &amp; barvy</a>
-                <a href="#dary" class="nav-link">Dary &amp; svatební cesta</a>
                 <a href="#harmonogram" class="nav-link">Harmonogram</a>
+                <a href="#dary" class="nav-link">Dary &amp; svatební cesta</a>
                 <a href="#fotky" class="nav-link">Sdílení fotek</a>
                 <a href="#alergie" class="nav-link">Účast</a>
             </nav>
@@ -658,45 +675,15 @@
                 <div class="palette">
                 <div class="palette-block">
                     <div class="palette-image-grid">
-                        <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/tepla_fialova.png?raw=true" alt="Studena fialova" />
-                        <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/tepla_fialova.png?raw=true" alt="Studena modra" />
-                        <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/tepla_fialova.png?raw=true" alt="Studena ruzova" />
+                        <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/studena_fialova.png?raw=true" alt="Studena fialova" />
+                        <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/studena_modra.png?raw=true" alt="Studena modra" />
+                        <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/studena_ruzova.png?raw=true" alt="Studena ruzova" />
                         <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/tepla_fialova.png?raw=true" alt="Tepla fialova" />
                         <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/tepla_modra.png?raw=true" alt="Tepla modra" />
                         <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/tepla_ruzova.png?raw=true" alt="Tepla ruzova" />
                     </div>
                 </div>
             </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="dary">
-        <h2 class="section-title">Dary &amp; svatební cesta</h2>
-
-        <div class="card gifts-layout">
-            <div class="gifts-text">
-                <p>
-                    Největším dárkem je pro nás to, že s námi strávíte náš svatební den na Zámku Loučeň. Pokud nám ale chcete udělat
-                    ještě větší radost, budeme vděční za <strong>finanční příspěvek na svatební cestu</strong>.
-                </p>
-                <p>
-                    Na místě bude k dispozici <strong>svatební schránka</strong> a také možnost zaslat příspěvek
-                    <strong>přes QR platbu</strong>. Údaje pro platbu doplníme zde na webu.
-                </p>
-                <p>
-                    Děkujeme, že nám pomůžete vytvořit společné zážitky, na které budeme vzpomínat celý život. 💜
-                </p>
-            </div>
-
-            <div class="qr-placeholder">
-                <div class="qr-box">
-                    <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/WEB_QR.png?raw=true"
-                         alt="QR kód pro platbu" />
-                </div>
-                <div class="qr-note">
-                    Naskenujte QR kód ve své bankovní aplikaci pro rychlý příspěvek na svatební cestu.
-                </div>
             </div>
         </div>
     </section>
@@ -773,13 +760,43 @@
                 </div>
                 <div class="timeline-row">
                     <div class="timeline-cell time">22:00</div>
-                    <div class="timeline-cell activity">Party &amp; DJ</div>
+                    <div class="timeline-cell activity">Party</div>
                     <div class="timeline-cell place">Zámecký salónek</div>
                 </div>
                 <div class="timeline-row">
-                    <div class="timeline-cell time">2:00</div>
+                    <div class="timeline-cell time">1:00</div>
                     <div class="timeline-cell activity">Konec akce</div>
                     <div class="timeline-cell place">Konec akce</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dary">
+        <h2 class="section-title">Dary &amp; svatební cesta</h2>
+
+        <div class="card gifts-layout">
+            <div class="gifts-text">
+                <p>
+                    Největším dárkem je pro nás to, že s námi strávíte náš svatební den na Zámku Loučeň. Pokud nám ale chcete udělat
+                    ještě větší radost, budeme vděční za <strong>finanční příspěvek na svatební cestu</strong>.
+                </p>
+                <p>
+                    Na místě bude k dispozici <strong>svatební schránka</strong> a také možnost zaslat příspěvek
+                    <strong>přes QR platbu</strong>. Údaje pro platbu doplníme zde na webu.
+                </p>
+                <p>
+                    Děkujeme, že nám pomůžete vytvořit společné zážitky, na které budeme vzpomínat celý život. 💜
+                </p>
+            </div>
+
+            <div class="qr-placeholder">
+                <div class="qr-box">
+                    <img src="https://github.com/MrNope21/MrNope21.github.io/blob/main/WEB_QR.png?raw=true"
+                         alt="QR kód pro platbu" />
+                </div>
+                <div class="qr-note">
+                    Naskenujte QR kód ve své bankovní aplikaci pro rychlý příspěvek na svatební cestu.
                 </div>
             </div>
         </div>
@@ -837,7 +854,7 @@
                     Kliknutím na tlačítko níže otevřete svatební dotazník v Google Forms.
                 </div>
                 <a class="cta-button"
-                   href="https://docs.google.com/...TVUJ_DOTAZNIK..."
+                   href="https://docs.google.com/forms/d/e/1FAIpQLScAOh5WCaVMKph3KwPuxq8aiE8BbF6t9rF5HzzRzTepBDkxKg/viewform?usp=publish-editor"
                    target="_blank" rel="noopener noreferrer">
                     <span class="cta-icon">📝</span>
                     <span>Vyplnit svatební dotazník</span>
@@ -870,5 +887,4 @@
 </script>
 </body>
 </html>
-
 
