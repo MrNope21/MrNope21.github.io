@@ -663,7 +663,18 @@
             .nav { width: calc(100% - 24px); }
             .page { padding-inline: 14px; }
             .card { padding-inline: 16px; }
-            .timeline-row { grid-template-columns: 70px minmax(0, 1fr); }
+            .timeline { gap: 8px; }
+            .timeline-row {
+                grid-template-columns: 70px minmax(0, 1fr);
+                gap: 8px 10px;
+                align-items: start;
+            }
+            .timeline-cell {
+                padding: 6px 12px;
+                border-radius: 16px;
+            }
+            .timeline-cell.activity,
+            .timeline-cell.place { line-height: 1.35; }
             .timeline-cell.place { grid-column: 2 / -1; }
         }
     </style>
