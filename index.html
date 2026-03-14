@@ -222,15 +222,6 @@
             color: var(--muted);
         }
 
-        .hero-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: #34d399;
-            margin-right: 6px;
-        }
-
         /* SECTIONS */
         section { margin-bottom: 40px; }
 
@@ -429,12 +420,18 @@
             position: relative;
         }
 
+        .payment-modal-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
         .payment-modal-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
             width: 34px;
             height: 34px;
+            flex: 0 0 34px;
             border-radius: 999px;
             border: 1px solid rgba(89, 80, 255, 0.28);
             background: #ffffff;
@@ -448,7 +445,7 @@
         .payment-modal-title {
             font-family: "Playfair Display", serif;
             font-size: 24px;
-            margin: 0 0 12px;
+            margin: 0;
             color: #25223b;
         }
 
@@ -499,23 +496,19 @@
             gap: 24px;
         }
 
-        .form-note { font-size: 14px; color: var(--muted); }
-
-        .form-note ul {
-            padding-left: 18px;
-            margin: 10px 0 0;
-        }
+        .form-note p { font-size: 15px; margin: 0 0 8px; }
+        .form-note strong { color: var(--accent); }
 
         .cta-box {
             display: flex;
             flex-direction: column;
             gap: 18px;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
             height: 100%;
         }
 
-        .cta-label { font-size: 13px; color: var(--muted); }
+        .cta-label { font-size: 15px; text-align: center; width: 100%; }
         .cta-label.top { margin-bottom: 2px; }
         .cta-label.bottom { margin-top: 4px; }
 
@@ -676,6 +669,49 @@
             .timeline-cell.activity,
             .timeline-cell.place { line-height: 1.35; }
             .timeline-cell.place { grid-column: 2 / -1; }
+
+            .payment-modal {
+                padding: 12px;
+                overflow-y: auto;
+            }
+
+            .payment-modal-content {
+                width: 100%;
+                padding: 18px 16px 16px;
+                border-radius: 24px;
+            }
+
+            .payment-modal-header {
+                gap: 8px;
+                flex-direction: column-reverse;
+                align-items: flex-end;
+                margin-bottom: 14px;
+            }
+
+            .payment-modal-title {
+                font-size: clamp(18px, 8vw, 32px);
+                line-height: 1.08;
+                width: 100%;
+            }
+
+            .payment-modal-close {
+                width: 40px;
+                height: 40px;
+                flex-basis: 40px;
+                font-size: 28px;
+                display: grid;
+                place-items: center;
+            }
+
+            .payment-modal p {
+                font-size: 14px;
+                line-height: 1.45;
+            }
+
+            .payment-modal .payment-small-note {
+                font-size: 13px;
+                line-height: 1.45;
+            }
         }
     </style>
 </head>
@@ -688,8 +724,7 @@
             <div class="hero-date">Pátek 10. července 2026 · Zámek Loučeň</div>
             <img class="hero-photo" src="https://github.com/MrNope21/MrNope21.github.io/blob/main/20250522_140614.jpg?raw=true" alt="Veronika a Aleš" />
             <p class="hero-text">
-                Tuto stránku jsme připravili pro naše milé hosty. Najdete zde informace o svatebním dni,
-                styl svatby, harmonogram a odkaz na dotazník k účasti a stravovacím omezením.
+                Milá rodino a kamarádi, po třech krásných letech spolu jsme se rozhodli udělat další krok a říct si své „ano“. Budeme moc rádi, když tenhle den prožijete s námi.
             </p>
         </div>
 
@@ -733,11 +768,6 @@
                     <div class="hero-card-label">Večerní program</div>
                     <div class="hero-card-value">19:00 · Večerní raut &amp; živá hudba</div>
                 </div>
-
-                <div class="hero-chip">
-                    <span class="hero-dot"></span>
-                    Těšíme se, že s námi na Loučeni prožijete tenhle den. 💜
-                </div>
             </aside>
             <a class="hero-highlight" href="#alergie">
                 💌 Prosíme, potvrďte svoji účast prostřednictvím dotazníku níže.
@@ -755,13 +785,16 @@
                 <div class="palette-text">
             <p>
                 Svatba bude zahalena do našich oblíbených modrofialových barev s růžovými akcenty. Obě primární
-                barvy – modrá i fialová – mají spoustu různých odstínů v teplých i studených podtónech. Věříme,
-                že každý host si vybere svůj oblíbený odstín.
+                barvy – modrá i fialová – mají spoustu různých odstínů v teplých i studených podtónech, takže
+                věříme, že každý host si najde ten svůj.
             </p>
             <p>
                 Není nutné být od hlavy k patě v modré či fialové. Barevná tématika se může promítnout do outfitu
-                hosta v libovolné míře, klidně jen jako doplněk. V tomto případě doporučujeme předem zhodnotit, zda
-                primární barvy ladí se zbytkem outfitu hosta.
+                v jakékoli míře, klidně jen jako drobný doplněk. Pokud se rozhodnete pro barevný doplněk v některém
+                z těchto odstínů, doporučujeme jen zkontrolovat, aby s ním zbytek outfitu ladil.
+            </p>
+            <p>
+                Pro inspiraci přikládáme vzorníky barev.
             </p>
 
                 </div>
@@ -872,15 +905,22 @@
         <div class="card gifts-layout">
             <div class="gifts-text">
                 <p>
-                    Největším dárkem je pro nás to, že s námi strávíte náš svatební den na Zámku Loučeň. Pokud nám ale chcete udělat
-                    ještě větší radost, budeme vděční za <strong>finanční příspěvek na svatební cestu</strong>.
+                    Pokud byste nám chtěli udělat radost i jinak než svou přítomností, budeme moc rádi za
+                    <strong>příspěvek na naši svatební cestu</strong>.
                 </p>
                 <p>
-                    Na místě bude k dispozici <strong>svatební schránka</strong> a také možnost zaslat příspěvek
-                    <strong>přes QR platbu</strong>. Údaje pro platbu doplníme zde na webu.
+                    Náš domov už je vybavený a další věcné dary bychom pravděpodobně nevyužili tak, jak by si
+                    zasloužily. Místo toho bychom rádi vyrazili na svatební cestu do <strong>slunné Kalábrie v Itálii</strong>
+                    a vytvořili si společné vzpomínky na začátek našeho manželství.
                 </p>
                 <p>
-                    Děkujeme, že nám pomůžete vytvořit společné zážitky, na které budeme vzpomínat celý život. 💜
+                    Finanční příspěvek nám pomůže proměnit tento plán ve skutečnost. Děkujeme, že nám pomůžete začít
+                    naši společnou cestu právě takovým způsobem.
+                </p>
+                <p style="margin-top: 1.4rem;">
+                    Pokud by nám přesto někdo chtěl darovat věcný dárek, prosíme o předchozí konzultaci s Pavlínou
+                    Drbálkovou (<strong>pavlina.drbalkova@gmail.com</strong>), která s námi koordinuje organizační
+                    detaily. Děkujeme.
                 </p>
             </div>
 
@@ -903,11 +943,15 @@
         <div class="card form-grid">
             <div class="form-note">
                 <p>
-                    Nahrajte prosím cokoliv, co zachycuje náladu dne: příjezd, obřad, detaily výzdoby, skupinky i taneční parket. Čím dříve, tím lépe,
-                    ať se můžeme podívat na to, jak jste den viděli vy.
+                    Budeme moc rádi, když se s námi podělíte o momentky ze svatby tak, jak jste náš den viděli vy.
+                    Do sdílené složky můžete nahrát fotky i videa - od příjezdu hostů až po poslední taneční kroky
+                    na parketu. Díky tomu si budeme moct celý den znovu projít z různých pohledů a zachovat si
+                    spoustu krásných vzpomínek.
                 </p>
                 <p>
-                    Pokud máte hodně fotek nebo videí, klidně je zabalte do ZIPu. Název složky/zipu můžete pojmenovat svým jménem, ať víme, komu poděkovat.
+                    Pokud máte větší množství souborů, klidně je můžete zabalit do ZIPu a nahrát najednou. Budeme
+                    také rádi, když složku nebo soubor pojmenujete svým jménem, abychom věděli, komu za fotky
+                    poděkovat.
                 </p>
             </div>
 
@@ -921,7 +965,8 @@
                     <span>Nahrát fotky</span>
                 </a>
                 <div class="cta-label bottom">
-                    Pokud by odkaz nefungoval, dejte nám vědět a pošleme vám přímý přístup nebo jinou cestu.
+                    Pokud byste nám chtěli fotky nebo videa poslat jiným způsobem, případně by se do složky nevešly,
+                    dejte nám vědět a domluvíme se na jiné cestě.
                 </div>
             </div>
         </div>
@@ -932,15 +977,19 @@
 
         <div class="card form-grid">
             <div class="form-note">
-                <p>V dotazníku se vás zeptáme na několik důležitých věcí:</p>
-                <ul>
-                    <li><strong>Kdo se účastní</strong> – za každého pozvaného, včetně případného +1.</li>
-                    <li><strong>Potvrzení účasti</strong> – jestli se svatby zúčastníte nebo ne.</li>
-                    <li><strong>Stravovací omezení a alergie</strong> – bezlepková dieta, vegetariánství, intolerance laktózy, alergie na ořechy atd.</li>
-                </ul>
                 <p>
-                    Vyplněním dotazníku nám hodně pomůžete, abychom pro vás dokázali připravit jídlo a celý program tak,
-                    aby si každý den na Loučeni opravdu užil.
+                    Prosíme vás o vyplnění krátkého dotazníku, který nám pomůže s organizací svatebního dne. Díky
+                    němu budeme vědět, kdo se svatby zúčastní, zda dorazíte sami nebo s doprovodem, a budeme vás
+                    moci případně kontaktovat.
+                </p>
+                <p>
+                    Součástí dotazníku je také otázka na alergie, intolerance nebo jiná stravovací omezení, abychom
+                    mohli vše předem zohlednit při přípravě menu. Pokud máte ještě něco, co bychom měli vědět, můžete
+                    nám to napsat do poznámky.
+                </p>
+                <p>
+                    Vyplněním dotazníku nám velmi pomůžete připravit svatbu tak, aby si ji všichni hosté mohli bez
+                    starostí užít.
                 </p>
             </div>
 
@@ -969,8 +1018,10 @@
 
 <div class="payment-modal" id="payment-modal" role="dialog" aria-modal="true" aria-labelledby="payment-modal-title" hidden>
     <div class="payment-modal-content">
-        <button type="button" class="payment-modal-close" id="payment-modal-close" aria-label="Zavřít platební údaje">×</button>
-        <h3 class="payment-modal-title" id="payment-modal-title">Informace o platbě</h3>
+        <div class="payment-modal-header">
+            <h3 class="payment-modal-title" id="payment-modal-title">Informace o platbě</h3>
+            <button type="button" class="payment-modal-close" id="payment-modal-close" aria-label="Zavřít platební údaje">×</button>
+        </div>
         <p><strong>Číslo účtu:</strong> 252779129/0600</p>
         <p><strong>Částka:</strong> jakou uznáte za vhodné 😉</p>
         <p><strong>Zpráva pro příjemce:</strong> Svatební dar Verča a Aleš + Vaše jméno</p>
@@ -1021,4 +1072,3 @@
 </script>
 </body>
 </html>
-
